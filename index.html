@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ficha de Campo - Pesquisa Mercadológica</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#155eef">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--text:#17212b;--muted:#66717d;--line:#d9dee5;--accent:#155eef}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--text)}
+.container{max-width:1000px;margin:auto;padding:12px}
+header,.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:10px}
+h1{margin:0 0 4px;font-size:21px}h2{font-size:15px;margin:0 0 10px}.subtitle{color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:8px}.c12{grid-column:span 12}.c6{grid-column:span 6}.c4{grid-column:span 4}.c3{grid-column:span 3}
+label{display:block;font-weight:600;font-size:12px;margin-bottom:4px}
+input,select,textarea{width:100%;padding:8px;border:1px solid #bcc5cf;border-radius:6px;background:#fff;font-size:13px}
+textarea{min-height:55px;resize:vertical}.options{display:flex;flex-wrap:wrap;gap:5px}.options label{font-weight:400;border:1px solid var(--line);padding:6px 8px;border-radius:6px;margin:0;background:#fafbfc}
+.options input{width:auto;margin-right:4px}.help{font-size:11px;color:var(--muted);margin-top:3px}
+.actions{position:sticky;bottom:0;background:rgba(244,246,248,.97);padding:9px 0;display:flex;gap:7px;flex-wrap:wrap}
+button{border:0;border-radius:7px;padding:9px 13px;font-weight:700;cursor:pointer;background:var(--accent);color:#fff;font-size:12px}
+button.secondary{background:#475467}button.light{background:#e7ebf0;color:#17212b}
+.note{font-size:11px;color:var(--muted);margin-top:7px}
+@media(max-width:700px){.c6,.c4,.c3{grid-column:span 12}.container{padding:7px}header,.card{padding:11px}h1{font-size:19px}}
+@media print{body{background:#fff}.actions{display:none}.card,header{break-inside:avoid;border:1px solid #aaa;margin-bottom:6px;padding:9px}header{padding:10px}.note{display:none}}
+</style>
+
+<style>
+#fotoPreview img {
+  max-width: 100%;
+  max-height: 260px;
+  border-radius: 8px;
+  border: 1px solid #d9dee5;
+  object-fit: contain;
+}
+</style>
+<style>
+input, select, textarea, button { font-size:16px; }
+input[type="file"] { font-size:14px; }
+#fotoPreview img {
+  display:block;
+  width:100%;
+  max-width:650px;
+  max-height:360px;
+  margin-top:8px;
+  border-radius:8px;
+  border:1px solid #d9dee5;
+  object-fit:contain;
+}
+@media print {
+  #fotoPreview { display:block !important; }
+  #fotoPreview img {
+    display:block !important;
+    max-width:100% !important;
+    max-height:330px !important;
+    page-break-inside:avoid;
+  }
+}
+.sync-status{margin-top:8px;padding:9px;border-radius:7px;font-size:12px;font-weight:600}
+.sync-ok{background:#e8f7ee;color:#176b3a}.sync-pending{background:#fff4d6;color:#7a5200}.sync-error{background:#fdecec;color:#9b1c1c}
+.queue-count{font-size:11px;color:var(--muted);margin-top:4px}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>Ficha de Campo - Pesquisa Mercadológica</h1>
+<div class="subtitle">Levantamento resumido para pesquisa e tratamento mercadológico</div><div class="field">
+<label for="projeto"><strong>PROJETO DA PESQUISA</strong></label>
+<input type="text" id="projeto" name="projeto" placeholder="Digite o nome do projeto" autocomplete="off" required>
+</div><div class="field">
+<label for="pesquisador"><strong>PESQUISADOR</strong></label>
+<input type="text" id="pesquisador" name="pesquisador" placeholder="Digite o nome do pesquisador" autocomplete="off" required>
+</div>
+
+</header>
+
+<form id="ficha">
+
+<section class="card">
+<h2>1. Identificação</h2>
+<div class="grid">
+<div class="c4"><label>Identificação / Proprietário</label><input name="codigo" required placeholder="Nome do proprietário"></div>
+<div class="c4"><label>Município</label><input name="municipio"></div>
+<div class="c4"><label>Telefone</label><input name="telefone" type="tel" inputmode="tel" placeholder="(00) 00000-0000"></div>
+<div class="c4"><label>Classificação</label><select name="classificacao">
+<option></option>
+<option value="1">Rural</option>
+<option value="0">Urbana</option>
+</select></div>
+<div class="c4"><label>Data</label><input type="date" name="data"></div>
+<div class="c6"><label>Localidade / referência</label><input name="localidade"></div>
+<div class="c6"><label>Fonte da informação</label><select name="fonte"><option></option><option>Proprietário</option><option>Vendedor</option><option>Comprador</option><option>Corretor</option><option>Imobiliária</option><option>Outro</option></select></div>
+<div class="c6"><label>E (Este)</label><input name="utmE" type="text" inputmode="decimal" placeholder="271003.60" required></div>
+<div class="c6"><label>N (Norte)</label><input name="utmN" type="text" inputmode="decimal" placeholder="7434670.48" required></div>
+<div class="c4"><label>Zona UTM</label><input name="utmZone" type="text" value="21S" required></div>
+<div class="c4"><label>Datum</label><input name="utmDatum" type="text" value="SIRGAS 2000" required></div>
+<div class="c4"><div class="help" style="padding-top:24px">Informe as coordenadas no padrão do levantamento: E (Este) e N (Norte).</div></div>
+<div class="c12">
+<label>Fotos da propriedade</label>
+<input type="file" name="fotos_propriedade" accept="image/*" multiple onchange="previsualizarFotos(this)">
+<div class="help">Selecione várias fotos diretamente da galeria/arquivos do celular. Não é necessário selecionar uma por vez.</div>
+<div id="fotoPreview" style="margin-top:8px;display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;"></div>
+</div>
+</div>
+</section>
+
+<section class="card">
+<h2>2. Caracterização do imóvel</h2>
+<div class="grid">
+<div class="c3"><label>Área total (ha)</label><input name="area" type="text" inputmode="decimal" placeholder="10,00"></div>
+<div class="c3"><label>Área agricultável</label><select name="area_agri"><option></option><option value="1">Sim</option><option value="0">Não</option></select></div>
+<div class="c3"><label>Área irrigada</label><select name="area_irr"><option></option><option value="1">Sim</option><option value="0">Não</option></select></div>
+<div class="c3"><label>Área com fruticultura</label><select name="area_fruticultura"><option></option><option value="1">Sim</option><option value="0">Não</option></select></div>
+<div class="c12"><label>Uso atual <small>(pode selecionar mais de uma)</small></label><div class="options">
+<label><input type="checkbox" name="uso[]" value="campo_pecuaria">Campo nativo / pecuária</label>
+<label><input type="checkbox" name="uso[]" value="pastagem">Pastagem</label>
+<label><input type="checkbox" name="uso[]" value="soja">Soja</label>
+<label><input type="checkbox" name="uso[]" value="arroz">Arroz</label>
+<label><input type="checkbox" name="uso[]" value="milho">Milho</label>
+<label><input type="checkbox" name="uso[]" value="trigo">Trigo</label>
+<label><input type="checkbox" name="uso[]" value="fruticultura">Fruticultura</label>
+<label><input type="checkbox" name="uso[]" value="misto">Uso misto</label>
+<label><input type="checkbox" name="uso[]" value="outro">Outro</label>
+</div></div>
+<div class="c4"><label>Potencial agrícola</label><select name="pot_agri"><option></option><option>0 — Baixo</option><option>1 — Médio</option><option>2 — Alto</option></select></div>
+<div class="c4"><label>Topografia</label><select name="topografia"><option></option><option>0 — Ondulada</option><option>1 — Suave ondulada</option><option>2 — Plana</option><option>3 — Plana / várzea</option></select></div>
+<div class="c4"><label>Solo / potencial produtivo</label><select name="solo"><option></option><option>0 — Baixo</option><option>1 — Médio-baixo</option><option>2 — Médio-alto</option><option>3 — Alto</option></select></div>
+</div>
+</section>
+
+<section class="card">
+<h2>3. Água, acesso e localização</h2>
+<div class="grid">
+<div class="c4"><label>Disponibilidade hídrica</label><select name="agua"><option></option><option>0 — Sem recurso relevante</option><option>1 — Limitada</option><option>2 — Boa</option></select></div>
+<div class="c4"><label>Recurso hídrico</label><input name="recurso" placeholder="Rio, riacho/córrego, açude, poço..."></div>
+<div class="c4"><label>Irrigabilidade</label><select name="irrigabilidade"><option></option><option>0 — Não</option><option>1 — Potencial</option><option>2 — Instalada</option></select></div>
+<div class="c4"><label>Qualidade do acesso</label><select name="acesso"><option></option><option>0 — Ruim</option><option>1 — Regular</option><option>2 — Bom</option></select></div>
+<div class="c4"><label>Distância à rodovia pavimentada (km)</label><input name="dist_rod" type="text" inputmode="decimal"></div>
+<div class="c4"><label>Distância ao centro urbano (km)</label><input name="dist_urb" type="text" inputmode="decimal"></div>
+<div class="c4"><label>Distância aproximada à LT (km)</label><input name="dist_lt" type="text" inputmode="decimal"></div>
+<div class="c4"><label>Acesso principal</label><select name="tipo_acesso"><option></option><option>Rodovia pavimentada</option><option>Estrada não pavimentada</option><option>Estrada vicinal</option><option>Outro</option></select></div>
+<div class="c4"><label>Acesso todo o ano?</label><select name="ano"><option></option><option>Sim</option><option>Não</option><option>Com restrições</option></select></div>
+</div>
+</section>
+
+<section class="card">
+<h2>4. Benfeitorias e produção</h2>
+<div class="grid">
+<div class="c4"><label>Benfeitorias significativas?</label><select name="benf"><option></option><option value="0">0 — Não</option><option value="1">1 — Sim</option></select></div>
+
+<div class="c4"><label>Infraestrutura produtiva</label><input name="infra" placeholder="Silo, curral, galpão..."></div>
+<div class="c12"><label>Fruticultura observada</label><div class="options">
+<label><input type="checkbox" name="frut[]" value="uva">Uva</label>
+<label><input type="checkbox" name="frut[]" value="pessego">Pêssego</label>
+<label><input type="checkbox" name="frut[]" value="maca">Maçã</label>
+<label><input type="checkbox" name="frut[]" value="pera">Pera</label>
+<label><input type="checkbox" name="frut[]" value="citros">Citros</label>
+<label><input type="checkbox" name="frut[]" value="outras">Outras</label>
+<label><input type="checkbox" name="frut[]" value="nenhuma">Não observada</label>
+</div></div>
+</div>
+</section>
+
+<section class="card">
+<h2>5. Mercado e negociação</h2>
+<div class="grid">
+<div class="c4"><label>Situação</label><select name="situacao"><option></option><option>À venda</option><option>Já vendida</option><option>Negociação em andamento</option><option>Venda recente conhecida</option></select></div>
+<div class="c4"><label>Preço total informado</label><input name="preco_total" type="text" inputmode="decimal" placeholder="100.000,00"></div>
+<div class="c4"><label>Preço informado (R$/ha) <small>(automático)</small></label><input name="preco_ha" type="text" readonly placeholder="10.000,00" style="background:#f0f3f6;cursor:not-allowed"></div>
+
+</div>
+<div class="help">Preço informado (R$/ha) = Preço total informado ÷ Área total (ha).</div>
+</section>
+
+<section class="card">
+<h2>6. Validação e observações</h2>
+<div class="grid">
+<div class="c4"><label>Fonte confiável?</label><select name="confianca"><option></option><option>0 — Baixa</option><option>1 — Média</option><option>2 — Alta</option></select></div>
+
+<div class="c4"><label>Amostra fora da área impactada?</label><select name="fora_impacto"><option></option><option>Sim</option><option>Não</option></select></div>
+<div class="c12"><label>Observações técnicas</label><textarea name="obs" placeholder="Registre apenas informações relevantes para o tratamento da amostra."></textarea></div>
+</div>
+</section>
+
+<div id="queueCount" class="queue-count"></div>
+<div class="actions">
+<button type="button" onclick="salvarPesquisa()">Salvar pesquisa + PDF</button>
+<button type="button" onclick="enviarAgora()">Enviar / Sincronizar</button>
+<button type="button" class="light" onclick="testarConexao()">Testar conexão</button>
+<button type="button" class="secondary" onclick="exportar()">Exportar dados</button>
+<button type="button" class="light" onclick="window.print()">Imprimir / PDF</button>
+<button type="button" class="light" onclick="limpar()">Nova ficha</button>
+</div>
+</form>
+</div>
+
+<script>
+const API_URL='https://script.google.com/macros/s/AKfycbwG1IQolr7VDQ18AKrfDfAJOjYUAdXIH8TwIci_iycZ9RW-RK7oAoN-Q-s3MnzdFURn/exec';
+const DB_NAME='PesquisaMercadologicaDB';
+const DB_VERSION=1;
+const STORE='pesquisas';
+let sincronizando=false;
+
+function parseNumeroBR(valor){if(valor===null||valor===undefined)return NaN;let t=String(valor).trim().replace(/\s/g,'');if(!t)return NaN;if(t.includes(','))t=t.replace(/\./g,'').replace(',','.');return Number(t);}
+function formatarNumeroBR(valor){return Number.isFinite(valor)?valor.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}):'';}
+function calcularPrecoHa(){const area=parseNumeroBR(document.querySelector('[name="area"]')?.value);const total=parseNumeroBR(document.querySelector('[name="preco_total"]')?.value);const out=document.querySelector('[name="preco_ha"]');if(out)out.value=(Number.isFinite(area)&&area>0&&Number.isFinite(total))?formatarNumeroBR(total/area):'';}
+function utmToLatLon(E,N,zone,south=true){const a=6378137.0,eccSquared=0.00669438002290,k0=0.9996;const eccPrimeSquared=eccSquared/(1-eccSquared);const e1=(1-Math.sqrt(1-eccSquared))/(1+Math.sqrt(1-eccSquared));const x=E-500000.0;let y=N;if(south)y-=10000000.0;const longOrigin=(zone-1)*6-180+3;const M=y/k0;const mu=M/(a*(1-eccSquared/4-3*eccSquared*eccSquared/64-5*eccSquared**3/256));const phi1Rad=mu+(3*e1/2-27*e1**3/32)*Math.sin(2*mu)+(21*e1**2/16-55*e1**4/32)*Math.sin(4*mu)+(151*e1**3/96)*Math.sin(6*mu)+(1097*e1**4/512)*Math.sin(8*mu);const N1=a/Math.sqrt(1-eccSquared*Math.sin(phi1Rad)**2);const T1=Math.tan(phi1Rad)**2;const C1=eccPrimeSquared*Math.cos(phi1Rad)**2;const R1=a*(1-eccSquared)/Math.pow(1-eccSquared*Math.sin(phi1Rad)**2,1.5);const D=x/(N1*k0);const lat=phi1Rad-(N1*Math.tan(phi1Rad)/R1)*(D**2/2-(5+3*T1+10*C1-4*C1**2-9*eccPrimeSquared)*D**4/24+(61+90*T1+298*C1+45*T1**2-252*eccPrimeSquared-3*C1**2)*D**6/720);const lon=(D-(1+2*T1+C1)*D**3/6+(5-2*C1+28*T1-3*C1**2+8*eccPrimeSquared+24*T1**2)*D**5/120)/Math.cos(phi1Rad);return{lat:lat*180/Math.PI,lon:longOrigin+lon*180/Math.PI};}
+function obterCoordenadas(){const E=parseNumeroBR(document.querySelector('[name="utmE"]')?.value);const N=parseNumeroBR(document.querySelector('[name="utmN"]')?.value);const ztxt=String(document.querySelector('[name="utmZone"]')?.value||'21S').trim().toUpperCase();const zone=parseInt(ztxt,10);const south=/S$/.test(ztxt)||!/N$/.test(ztxt);const datum=document.querySelector('[name="utmDatum"]')?.value||'SIRGAS 2000';if(!Number.isFinite(E)||!Number.isFinite(N)||!Number.isInteger(zone)||zone<1||zone>60)throw new Error('Informe E, N e Zona UTM válidos.');if(E<100000||E>900000||N<0||N>10000000)throw new Error('Valores E/N fora do intervalo UTM esperado.');const g=utmToLatLon(E,N,zone,south);return{E,N,zone:ztxt,datum,lat:g.lat,lon:g.lon};}
+function dados(){const fd=new FormData(document.getElementById('ficha'));const o={};for(const[k,v]of fd.entries()){if(k.endsWith('[]')){if(!Array.isArray(o[k]))o[k]=[];o[k].push(v);}else if(k!=='fotos_propriedade')o[k]=v;}return o;}
+function fileToDataURL(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file);});}
+function compressDataURL(dataUrl,maxSide=1280,quality=.65){return new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>{const s=Math.min(1,maxSide/Math.max(img.width,img.height));const c=document.createElement('canvas');c.width=Math.max(1,Math.round(img.width*s));c.height=Math.max(1,Math.round(img.height*s));c.getContext('2d').drawImage(img,0,0,c.width,c.height);resolve(c.toDataURL('image/jpeg',quality));};img.onerror=reject;img.src=dataUrl;});}
+async function obterFotosDataURL(){const input=document.querySelector('[name="fotos_propriedade"]');if(!input?.files?.length)return[];const arr=[];for(const f of Array.from(input.files)){arr.push(await compressDataURL(await fileToDataURL(f)));}return arr;}
+function previsualizarFotos(input){const box=document.getElementById('fotoPreview');if(!box)return;box.innerHTML='';for(const f of Array.from(input.files||[])){const img=document.createElement('img');img.src=URL.createObjectURL(f);box.appendChild(img);}}
+function openDB(){return new Promise((resolve,reject)=>{const r=indexedDB.open(DB_NAME,DB_VERSION);r.onupgradeneeded=()=>{const db=r.result;if(!db.objectStoreNames.contains(STORE))db.createObjectStore(STORE,{keyPath:'id_local'});};r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});}
+async function dbPut(item){const db=await openDB();return new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).put(item);tx.oncomplete=()=>{db.close();resolve();};tx.onerror=()=>{db.close();reject(tx.error);};});}
+async function dbDelete(id){const db=await openDB();return new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).delete(id);tx.oncomplete=()=>{db.close();resolve();};tx.onerror=()=>{db.close();reject(tx.error);};});}
+async function dbAll(){const db=await openDB();return new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readonly');const req=tx.objectStore(STORE).getAll();req.onsuccess=()=>{db.close();resolve(req.result||[]);};req.onerror=()=>{db.close();reject(req.error);};});}
+async function dbCount(){return (await dbAll()).length;}
+async function migrarFilaAntiga(){try{const raw=localStorage.getItem('vtm_fila_pesquisas');if(!raw)return;const q=JSON.parse(raw)||[];for(const item of q){if(item?.registro?.id_local)await dbPut(item.registro);}localStorage.removeItem('vtm_fila_pesquisas');}catch(e){console.warn('Migração da fila antiga:',e);}}
+async function atualizarFila(){const n=await dbCount();const el=document.getElementById('queueCount');if(el)el.textContent=n?'⏳ '+n+' pesquisa(s) aguardando sincronização.':'✓ Nenhuma pesquisa pendente.';}
+async function montarRegistro(){const d=dados();d.projeto=(document.querySelector('[name="projeto"]')?.value||'').trim();d.pesquisador=(document.querySelector('[name="pesquisador"]')?.value||'').trim();const c=obterCoordenadas();d.utmE=c.E;d.utmN=c.N;d.utmZone=c.zone;d.utmDatum=c.datum;d.lat=Number(c.lat.toFixed(8));d.lon=Number(c.lon.toFixed(8));d.fotos_dataurl=await obterFotosDataURL();d.foto_dataurl=d.fotos_dataurl[0]||'';d.data_envio=new Date().toISOString();d.id_local=d.projeto+'|'+d.codigo+'|'+Date.now()+'|'+Math.random().toString(36).slice(2,8);return d;}
+function validarRegistro(d){if(!d.projeto)return'Informe o Projeto da Pesquisa.';if(!d.pesquisador)return'Informe o Pesquisador.';if(!d.codigo)return'Informe o nome completo do proprietário.';if(!Number.isFinite(Number(d.utmE))||!Number.isFinite(Number(d.utmN)))return'Informe E (Este) e N (Norte).';if(!d.area)return'Informe a Área total.';if(!d.preco_total)return'Informe o Preço total informado.';return'';}
+async function enfileirar(d){await dbPut(d);await atualizarFila();}
+function jsonpStatus(id,timeout=10000){return new Promise((resolve,reject)=>{const cb='pwa_cb_'+Date.now()+'_'+Math.random().toString(36).slice(2);let done=false;const s=document.createElement('script');const finish=(ok,val)=>{if(done)return;done=true;clearTimeout(timer);delete window[cb];s.remove();ok?resolve(val):reject(val);};window[cb]=data=>finish(true,data);s.onerror=()=>finish(false,new Error('Não foi possível consultar o status do servidor.'));s.src=API_URL+'?status='+encodeURIComponent(id)+'&callback='+encodeURIComponent(cb)+'&_='+Date.now();document.body.appendChild(s);const timer=setTimeout(()=>finish(false,new Error('Tempo esgotado consultando o servidor.')),timeout);});}
+function postFormHidden(record){return new Promise((resolve,reject)=>{const id='frm_'+Date.now()+'_'+Math.random().toString(36).slice(2);const frame=document.createElement('iframe');frame.name=id;frame.style.display='none';document.body.appendChild(frame);const form=document.createElement('form');form.method='POST';form.action=API_URL;form.target=id;form.style.display='none';const input=document.createElement('input');input.type='hidden';input.name='payload';input.value=JSON.stringify(record);form.appendChild(input);document.body.appendChild(form);try{form.submit();}catch(e){cleanup();reject(e);return;}function cleanup(){form.remove();frame.remove();}setTimeout(cleanup,45000);resolve({ok:true});});}
+async function aguardarConfirmacao(id,timeout=45000){const inicio=Date.now();while(Date.now()-inicio<timeout){try{const r=await jsonpStatus(id,8000);if(r&&r.state==='ok')return r;if(r&&r.state==='error')throw new Error(r.error||'O servidor recusou a pesquisa.');}catch(e){if(Date.now()-inicio>=timeout)throw e;}await new Promise(r=>setTimeout(r,1200));}throw new Error('O servidor não confirmou a pesquisa. Ela permanece salva no celular.');}
+async function enviarItem(record){if(!navigator.onLine)throw new Error('Sem internet.');await postFormHidden(record);return await aguardarConfirmacao(record.id_local);}
+async function testarConexao(){if(!navigator.onLine){alert('SEM INTERNET\n\nA ficha continua funcionando offline.');return;}try{const r=await jsonpStatus('__ping__',10000);if(r&&r.state==='online')alert('CONEXÃO OK\n\nServidor de sincronização acessível.');else throw new Error('Resposta inesperada.');}catch(e){alert('FALHA NA CONEXÃO\n\n'+(e.message||e));}}
+async function sincronizar(silencioso=false){if(sincronizando)return;const q=await dbAll();if(!q.length){await atualizarFila();if(!silencioso)alert('Nenhuma pesquisa pendente para sincronizar.');return;}if(!navigator.onLine){if(!silencioso)alert('Sem internet. As pesquisas permanecem salvas no celular.');return;}sincronizando=true;try{let falhas=0;for(const record of q){try{const r=await enviarItem(record);if(!r||r.ok!==true)throw new Error((r&&r.error)||'Servidor não confirmou.');await dbDelete(record.id_local);}catch(e){falhas++;console.warn('Falha ao sincronizar',record.id_local,e);}}await atualizarFila();if(!silencioso){alert(falhas?'Algumas pesquisas permanecem pendentes.':'Sincronização concluída.');}}finally{sincronizando=false;}}
+async function enviarAgora(){try{const campos=['projeto','pesquisador','codigo','utmE','utmN','area','preco_total'];const temAtual=campos.some(n=>(document.querySelector('[name="'+n+'"]')?.value||'').trim());if(temAtual){const d=await montarRegistro();const erro=validarRegistro(d);if(erro){alert(erro);return;}await enfileirar(d);document.getElementById('ficha').reset();document.querySelector('[name="utmZone"]').value='21S';document.querySelector('[name="utmDatum"]').value='SIRGAS 2000';document.getElementById('fotoPreview').innerHTML='';calcularPrecoHa();}if(!(await dbCount())){alert('Nenhuma pesquisa pendente para sincronizar.');return;}await sincronizar();}catch(e){alert(e.message||String(e));}}
+async function salvarPesquisa(){try{const d=await montarRegistro(),erro=validarRegistro(d);if(erro){alert(erro);return;}await enfileirar(d);window.print();alert('Pesquisa salva no celular.');}catch(e){alert(e.message||String(e));}}
+function exportar(){const d=dados();const c=obterCoordenadas();d.utmE=c.E;d.utmN=c.N;d.utmZone=c.zone;d.utmDatum=c.datum;d.lat=c.lat;d.lon=c.lon;const lines=[];Object.keys(d).forEach(k=>{let v=d[k];if(Array.isArray(v))v=v.join(', ');lines.push(k.toUpperCase()+': '+(v??''));});const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=(d.codigo||'pesquisa_mercadologica')+'.txt';a.click();URL.revokeObjectURL(a.href);}
+function limpar(){if(confirm('Limpar todos os campos e iniciar nova pesquisa?')){document.getElementById('ficha').reset();document.querySelector('[name="utmZone"]').value='21S';document.querySelector('[name="utmDatum"]').value='SIRGAS 2000';document.getElementById('fotoPreview').innerHTML='';calcularPrecoHa();}}
+window.addEventListener('online',()=>{atualizarFila();sincronizar(true);});
+window.addEventListener('offline',()=>atualizarFila());
+document.addEventListener('DOMContentLoaded',async()=>{const area=document.querySelector('[name="area"]'),total=document.querySelector('[name="preco_total"]');if(area)area.addEventListener('input',calcularPrecoHa);if(total){total.addEventListener('input',calcularPrecoHa);total.addEventListener('blur',()=>{const n=parseNumeroBR(total.value);if(Number.isFinite(n))total.value=formatarNumeroBR(n);calcularPrecoHa();});}const data=document.querySelector('[name="data"]');if(data&&!data.value){const hoje=new Date();data.value=new Date(hoje.getTime()-hoje.getTimezoneOffset()*60000).toISOString().slice(0,10);}await migrarFilaAntiga();await atualizarFila();if(navigator.onLine)sincronizar(true);if('serviceWorker' in navigator)navigator.serviceWorker.register('./service-worker.js').catch(e=>console.warn('SW:',e));setInterval(()=>{if(navigator.onLine)sincronizar(true);},60000);});
+</script>
+</body>
+</html>
